@@ -1,0 +1,12 @@
+Promotion Summary – [Name]
+
+This year I operated beyond my current scope by delivering multi-market data migration, driving cross-team process improvements, and strengthening security and reliability.
+
+· Co-designed and developed batch data migration; completed core rollout in NZ, AU, BH, DZ, AE. Optimized runtime from 20h to 16h per market (20% reduction, 4h saved per market; ~20h saved per 5-market run).
+· Partnered with COA and influenced Tech Lead to adopt BOAT tool; reduced release preparation from at least half a day to 2 hours, with positive peer feedback.
+· Cross-team delivered secret key migration to GCP Secret Manager, improving security and compliance.
+· Identified OOM risk and drove GCP memory upgrade for all APIs; coordinated business funding/pay evidence and Infra/Capable team execution, preventing OOM during migration.
+· Contributing to cross-team global project integrating two systems; completed [milestone], developing [module], expected [date].
+
+Impact: multi-market delivery, performance, release efficiency, security, reliability, cross-functional leadership.
+Recommendation: submit for promotion.
