@@ -10,3 +10,83 @@ This year I operated beyond my current scope by delivering multi-market data mig
 
 Impact: multi-market delivery, performance, release efficiency, security, reliability, cross-functional leadership.
 Recommendation: submit for promotion.
+
+一页纸 Promotion Summary（可直接复制）
+
+姓名：[Your Name]
+当前职位：[Current Title]
+建议晋升：[Target Title]
+时间：2026
+
+Headline
+
+今年我在两个核心项目上承担了超出当前级别的职责：完成多市场数据迁移交付与性能优化，推动跨团队流程、安全与稳定性改进，并参与 Global 跨团队项目打通两个系统。
+
+Key Achievements
+
+1. 多市场数据迁移交付与性能优化
+
+· 共同设计并开发 batch data migration，完成 NZ、AU、BH、DZ、AE 五个市场核心迁移上线，主体已完成，正在推进 market adaptation。
+· 通过 batch 迁移设计与优化，将单市场迁移时间从 20 小时降至 16 小时，节省 4 小时/市场，性能提升 20%。按 5 个市场计算，每轮约节省 20 小时。
+· 影响：加速市场上线，降低迁移窗口和运维成本，为后续市场复制提供可复用方案。
+
+2. 跨团队流程改进：推动 COA BOAT 工具落地
+
+· 与 COA 团队合作，说服 COA Tech Lead 引入 BOAT 工具，解决上线准备材料繁琐、手工填写多的问题。
+· 上线准备从至少 半天缩短到 2 小时，团队同事积极采纳并反馈良好。
+· 影响：提升发布效率，减少手工操作，形成可复制的上线流程。
+
+3. 安全与稳定性：Secret Manager 升级 + API 内存扩容
+
+· 跨团队完成 secret key 升级到 GCP Secret Manager，提升密钥集中管理、安全与合规基线。
+· 识别迁移期间可能出现的 OOM 风险，推动全部 API 的 GCP 内存升级；协调业务团队预算审批与 pay evidence，并推动 Infra/Capable Team 执行落地。
+· 影响：降低安全风险，避免 OOM 故障，保障迁移和 API 稳定性。
+
+4. Global 跨团队项目：两个系统打通
+
+· 参与/负责跨团队 Global 项目，推进两个项目打通；已完成 [X 里程碑/模块]，正在开发 [Y 模块]，预计 [时间] 上线。
+· 影响：解决跨系统依赖，提升全球协作和复杂项目交付能力。
+
+Impact Summary
+
+· 交付：5 个市场核心迁移上线
+· 性能：20h → 16h/市场，降低 20%
+· 效率：上线准备半天 → 2h
+· 安全：Secret Manager 升级
+· 稳定：全部 API 内存升级，消除 OOM 风险
+· 协作：COA、Infra、Business、Global 跨团队
+
+Next-level Capabilities
+
+· Scope：从单任务到多市场、全球跨团队项目
+· Impact：性能、效率、安全、稳定性、成本
+· Leadership：说服 Tech Lead、推动工具采纳、协调预算与 Infra
+· Collaboration：跨 COA / Infra / Business / Global
+· Technical Excellence：batch migration、Secret Manager、GCP 内存优化
+· Delivery：核心迁移完成，多市场落地
+
+Elevator Pitch（跟大老板口头说）
+
+“今年我共同负责了数据迁移在 5 个市场的核心交付，并把单市场迁移从 20 小时优化到 16 小时；推动 COA BOAT 落地，把上线准备从半天降到 2 小时；同时跨团队完成 Secret Manager 升级和全部 API 内存扩容，提升安全与稳定性。我正在全球项目中推进两个系统打通。这些工作已经体现下一级的跨团队影响、流程改进和风险交付能力，建议列入晋升名单。”
+
+
+把弱表达改成强表达
+
+· “还在继续开发” → “已完成 [X]，正在推进 [Y]，预计 [Z] 上线”
+· “听说更安全” → “提升安全合规基线，集中管理密钥”
+· “同事说好” → “获得团队采纳和正向反馈”
+· “跟其他同事开发” → “共同设计并负责 [模块] 开发”
+· “业务给钱” → “协调业务预算审批与付款凭证”
+· “参与项目” → “负责/推动/主导 [具体模块]”
+
+---
+
+发给老板时加一句
+
+“这是我按下一级标准整理的初稿。如果只保留三个最强证据，我建议选：
+1）5 市场迁移 + 20h→16h；
+2）COA BOAT 半天→2h；
+3）Secret Manager + API 内存升级。
+您看 calibration 里哪个最打动大老板？我按这个再压缩。”
+
+这样老板更容易帮你在晋升会上推销。项目二还没上线，建议不要当主证据，只作为 scope 和跨团队协作的补充。
