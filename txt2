@@ -1,0 +1,104 @@
+Ticket 多不是问题，问题在于不要把一年几十上百个 ticket 逐个列给 Leader。那样反而显得碎片化、琐碎。正确做法是：聚合统计 + 主题分桶 + 代表性抽样 + 可核对索引。Jira 开发面板适合“抽查单个 ticket”，不适合“全量展示一年”。
+
+---
+
+一、原则：三层呈现，不要一层铺开
+
+给 Leader 的邮件/附件里，ticket 只出现三层：
+
+1. 聚合层：今年关联了多少 ticket、多少 commit、多少 PR，按主题/Epic 分桶统计；
+2. 代表层：每个主题挑 1—2 个 ticket，展示完整链路（ticket → commit → PR → 上线/指标）；
+3. 索引层：给一个共享 Jira 过滤器链接或附件表格，Leader 想抽查时能点开看全部 ticket。
+
+这样既证明覆盖面，又避免流水账。
+
+---
+
+二、具体操作：把很多 ticket 变成可读证据
+
+1. 先建一个 Jira 过滤器，把今年你的 ticket 圈出来
+
+用 JQL 类似：
+
+```sql
+project = 你的项目
+AND assignee = currentUser()
+AND created >= 2026-01-01 AND created < 2027-01-01
+ORDER BY created DESC
+```
+
+如果有些 ticket 是别人创建你处理的，可以用 participant 或按 assignee was 调整。建好后保存并共享给 Leader，命名如“2026 我的代码关联工作项”。这就是索引层。
+
+2. 按“主题/Epic/父任务”分桶，不要按 ticket 分桶
+
+一年很多 ticket 通常可以归成几类：
+
+· 某个核心模块的迭代需求；
+· 某类缺陷修复；
+· 某次重构/技术债；
+· 稳定性/告警治理；
+· 工具/效率改进；
+· review 拦截相关。
+
+在 Jira 里看这些 ticket 是否挂在同一个 Epic 或父任务下；如果没有，就手动在表格里归桶。每个桶统计：
+
+主题 关联 ticket 数 关联 commit 数 代表 ticket 结果证据
+核心链路稳定性 18 62 PROJ-123 告警下降 X%
+某模块重构 12 45 PROJ-456 变更失败率下降
+缺陷修复 25 30 PROJ-789 某故障不再复现
+
+这张表比列 100 个 ticket 有力得多。
+
+3. 代表 ticket 要选“链路完整”的
+
+每个主题挑 1—2 个 ticket，要求：
+
+· ticket 状态是 Done/Released；
+· 开发面板里能看到关联 commit 和 PR；
+· PR 已合并；
+· 有上线记录或指标变化。
+
+在附件里对代表 ticket 写“问题—行动—结果”，并截图开发面板或给链接。其他 ticket 不用逐个写。
+
+4. 用 Git 侧反向统计 commit 关联覆盖率
+
+如果 Jira 开发面板逐个看太慢，可以在本地仓库统计 commit message 里的 issue key：
+
+```bash
+git log --since="2026-01-01" --author="你的名字" \
+  --pretty=format:"%s" | grep -oE '[A-Z][A-Z0-9]+-[0-9]+' | sort | uniq -c | sort -rn
+```
+
+这能快速得到“每个 ticket 关联了多少 commit”。再和 Jira 过滤器导出的 ticket 列表对比，算一个关联覆盖率：今年你的 commit 中有多少比例能对应到真实 ticket。这个数字可以放聚合层。
+
+5. 如果历史 commit 没写 ticket key，用 PR 聚合
+
+很多团队 PR 标题或描述里有 ticket key，Jira 通过 PR 也能关联。优先整理有 PR 且已合并的 ticket，有效性最强。没有关联的零散 commit 不必硬凑，抽样高价值即可。
+
+---
+
+三、给 Leader 的邮件里怎么写
+
+正文只写聚合和代表案例，例如：
+
+今年我的代码工作拆得比较细，关联了较多 ticket。为了避免流水账，我按主题做了聚合：
+
+· 全年关联 Jira 工作项约 X 个，其中 Y% 能在开发面板中追溯到 commit/PR；
+· 主要集中在 3 个主题：[主题 A] 关联 X 个 ticket、[主题 B] 关联 Y 个、[主题 C] 关联 Z 个；
+· 每个主题我挑了 1—2 个代表性 ticket 做完整链路展示（ticket → commit → PR → 上线结果），详见附件；
+· 全部 ticket 我建了一个共享 Jira 过滤器：[链接]，你可以随时抽查。
+
+如果其他 team 质疑“ticket 太碎”，可以这样回应：我的有效性不靠单个 ticket 大小，而靠主题聚合后的交付结果、关键路径位置和 review 拦截；碎片化 ticket 背后是持续的核心模块维护和缺陷消减。
+
+附件里放：
+
+1. 主题聚合统计表；
+2. 2—3 个代表 ticket 的完整链路截图；
+3. 共享过滤器链接；
+4. 关联覆盖率说明。
+
+---
+
+四、注意一个坑
+
+不要试图证明“每个 ticket 都很重要”。一年很多 ticket 里必然有琐碎的。你要证明的是：这些 ticket 聚合起来，在关键模块上产生了可验证的交付结果和风险消减。评审看的是主题级影响，不是 ticket 级数量。Leader 拿聚合表和代表案例去跨团队沟通，比拿一百个 ticket 链接有效得多。
